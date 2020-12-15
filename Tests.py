@@ -7,6 +7,16 @@ class Tests(TestCase):
 		self.calculator = Calculator()
 
 
-class TestInit(Tests):
-	def test_visualization_widget(self):
-		self.assertEqual()
+class TestImportValue(Tests):
+	def test_dec_byte_positive(self):
+		self.assertEqual(self.calculator.insert_value('DEC', 'BYTE', 127), 127)
+		self.assertEqual(self.calculator.insert_value('DEC', 'BYTE', 0), 0)
+		self.assertEqual(self.calculator.insert_value('DEC', 'BYTE', -128), -128)
+
+		self.assertEqual(self.calculator.insert_value('OCT', 'BYTE', '0o200'), '0o200')
+		self.assertEqual(self.calculator.insert_value('OCT', 'BYTE', '0o400'), '0o400')
+
+
+	def test_dec_byte_negative(self):
+		self.assertNotEqual(self.calculator.insert_value('DEC', 'BYTE', 128), 128)
+		self.assertNotEqual(self.calculator.insert_value('DEC', 'BYTE', -129), -129)
