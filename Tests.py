@@ -736,3 +736,152 @@ class TestConvertValueWord(Tests):
 		self.calculator.set_word('DWord')
 		self.assertEqual(self.calculator.display(), '-420990904')
 
+
+class TestArithmetics(Tests):
+	def test_add(self):
+		self.calculator.set_system(10)
+		self.calculator.set_word('QWord')
+
+		self.calculator.add('10', '5')
+		self.assertEqual(self.calculator.display(), '15')
+
+		self.calculator.add('3', '4')
+		self.assertEqual(self.calculator.display(), '7')
+
+		self.calculator.add('10', '5')
+		self.assertNotEqual(self.calculator.display(), '13')
+
+		self.calculator.add('3', '4')
+		self.assertNotEqual(self.calculator.display(), '2')
+
+	def test_sub(self):
+		self.calculator.set_system(10)
+		self.calculator.set_word('QWord')
+
+		self.calculator.sub('10', '5')
+		self.assertEqual(self.calculator.display(), '5')
+
+		self.calculator.sub('3', '4')
+		self.assertEqual(self.calculator.display(), '-1')
+
+		self.calculator.sub('10', '5')
+		self.assertNotEqual(self.calculator.display(), '13')
+
+		self.calculator.sub('3', '4')
+		self.assertNotEqual(self.calculator.display(), '2')
+
+	def test_mul(self):
+		self.calculator.set_system(10)
+		self.calculator.set_word('QWord')
+
+		self.calculator.mul('10', '5')
+		self.assertEqual(self.calculator.display(), '50')
+
+		self.calculator.mul('3', '4')
+		self.assertEqual(self.calculator.display(), '12')
+
+		self.calculator.mul('10', '5')
+		self.assertNotEqual(self.calculator.display(), '13')
+
+		self.calculator.mul('3', '4')
+		self.assertNotEqual(self.calculator.display(), '2')
+
+	def test_div(self):
+		self.calculator.set_system(10)
+		self.calculator.set_word('QWord')
+
+		self.calculator.div('10', '5')
+		self.assertEqual(self.calculator.display(), '2')
+
+		self.calculator.div('4', '4')
+		self.assertEqual(self.calculator.display(), '1')
+
+		self.calculator.div('10', '5')
+		self.assertNotEqual(self.calculator.display(), '13')
+
+		self.calculator.div('3', '4')
+		self.assertNotEqual(self.calculator.display(), '2')
+
+	def test_neg(self):
+		self.calculator.set_system(10)
+		self.calculator.set_word('QWord')
+
+		self.calculator._neg('10')
+		self.assertEqual(self.calculator.display(), '-10')
+
+		self.calculator._neg('4')
+		self.assertEqual(self.calculator.display(), '-4')
+
+		self.calculator._neg('10')
+		self.assertNotEqual(self.calculator.display(), '13')
+
+		self.calculator._neg('4')
+		self.assertNotEqual(self.calculator.display(), '2')
+
+	def test_and(self):
+		self.calculator.set_system(10)
+		self.calculator.set_word('QWord')
+
+		self.calculator._and('10', '5')
+		self.assertEqual(self.calculator.display(), '0')
+
+		self.calculator._and('12', '8')
+		self.assertEqual(self.calculator.display(), '8')
+
+		self.calculator._and('10', '5')
+		self.assertNotEqual(self.calculator.display(), '2')
+
+		self.calculator._and('12', '8')
+		self.assertNotEqual(self.calculator.display(), '3')
+
+	def test_or(self):
+		self.calculator.set_system(10)
+		self.calculator.set_word('QWord')
+
+		self.calculator._or('10', '5')
+		self.assertEqual(self.calculator.display(), '15')
+
+		self.calculator._or('12', '8')
+		self.assertEqual(self.calculator.display(), '12')
+
+		self.calculator._or('10', '5')
+		self.assertNotEqual(self.calculator.display(), '4')
+
+		self.calculator._or('12', '8')
+		self.assertNotEqual(self.calculator.display(), '32')
+
+	def test_xor(self):
+		self.calculator.set_system(10)
+		self.calculator.set_word('QWord')
+
+		self.calculator._xor('10', '5')
+		self.assertEqual(self.calculator.display(), '15')
+
+		self.calculator._xor('12', '8')
+		self.assertEqual(self.calculator.display(), '4')
+
+		self.calculator._xor('10', '5')
+		self.assertNotEqual(self.calculator.display(), '3')
+
+		self.calculator._xor('12', '8')
+		self.assertNotEqual(self.calculator.display(), '12')
+
+	def test_not(self):
+		self.calculator.set_system(10)
+		self.calculator.set_word('QWord')
+
+		self.calculator._not('10')
+		self.assertEqual(self.calculator.display(), '-11')
+
+		self.calculator._not('12')
+		self.assertEqual(self.calculator.display(), '-13')
+
+		self.calculator._not('10')
+		self.assertNotEqual(self.calculator.display(), '15')
+
+		self.calculator._not('4')
+		self.assertNotEqual(self.calculator.display(), '-133')
+
+
+
+

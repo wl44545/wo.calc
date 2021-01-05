@@ -54,3 +54,54 @@ class Calculator:
 		tmp = self.current_value + step
 		if self.check_value_system(tmp, self.system) and self.check_value_word(tmp, self.word):
 			self.current_value = tmp
+
+	def add(self, a:str, b:str):
+		c = str(int(a) + int(b))
+		if self.check_value_system(c, self.system) and self.check_value_word(c, self.word):
+			self.current_value = c
+			return c
+
+	def sub(self, a:str, b:str):
+		c = str(int(a) - int(b))
+		if self.check_value_system(c, self.system) and self.check_value_word(c, self.word):
+			self.current_value = c
+			return c
+
+	def mul(self, a:str, b:str):
+		c = str(int(a) * int(b))
+		if self.check_value_system(c, self.system) and self.check_value_word(c, self.word):
+			self.current_value = c
+			return c
+
+	def div(self, a:str, b:str):
+		c = str(int(int(a) / int(b)))
+		if self.check_value_system(c, self.system) and self.check_value_word(c, self.word):
+			self.current_value = c
+			return c
+
+	def _neg(self, a:str):
+		c = str(~int(a)+1)
+		if self.check_value_system(c, self.system) and self.check_value_word(c, self.word):
+			self.current_value = c
+			return c
+
+	def _and(self, a:str, b:str):
+		c = str(int(a) & int(b))
+		self.current_value = c
+		return c
+
+	def _or(self, a:str, b:str):
+		c = str(int(a) | int(b))
+		self.current_value = c
+		return c
+
+	def _xor(self, a:str, b:str):
+		c = str(int(a) ^ int(b))
+		self.current_value = c
+		return c
+
+	def _not(self, a:str):
+		c = str(~int(a))
+		if self.check_value_system(c, self.system) and self.check_value_word(c, self.word):
+			self.current_value = c
+			return c
