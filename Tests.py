@@ -882,6 +882,34 @@ class TestArithmetics(Tests):
 		self.calculator._not('4')
 		self.assertNotEqual(self.calculator.display(), '-133')
 
+	def test_rol(self):
+		self.calculator.set_system(10)
+		self.calculator.set_word('QWord')
 
+		self.calculator._rol('10')
+		self.assertEqual(self.calculator.display(), '20')
 
+		self.calculator._rol('12')
+		self.assertEqual(self.calculator.display(), '24')
 
+		self.calculator._rol('10')
+		self.assertNotEqual(self.calculator.display(), '23')
+
+		self.calculator._rol('12')
+		self.assertNotEqual(self.calculator.display(), '2')
+
+	def test_ror(self):
+		self.calculator.set_system(10)
+		self.calculator.set_word('QWord')
+
+		self.calculator._ror('10')
+		self.assertEqual(self.calculator.display(), '5')
+
+		self.calculator._ror('12')
+		self.assertEqual(self.calculator.display(), '6')
+
+		self.calculator._ror('10')
+		self.assertNotEqual(self.calculator.display(), '23')
+
+		self.calculator._ror('12')
+		self.assertNotEqual(self.calculator.display(), '2')

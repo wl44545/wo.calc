@@ -105,3 +105,15 @@ class Calculator:
 		if self.check_value_system(c, self.system) and self.check_value_word(c, self.word):
 			self.current_value = c
 			return c
+
+	def _rol(self, a:str):
+		c = str(int(a) << 1)
+		if self.check_value_system(c, self.system) and self.check_value_word(c, self.word):
+			self.current_value = c
+			return c
+
+	def _ror(self, a:str):
+		c = str(int(a) >> 1)
+		if self.check_value_system(c, self.system) and self.check_value_word(c, self.word):
+			self.current_value = c
+			return c
