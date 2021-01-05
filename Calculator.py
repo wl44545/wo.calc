@@ -2,51 +2,64 @@ import math as m
 
 
 class Calculator:
-	def __init__(self):
-		self.system = 'DEC'
-		self.word = 'Word'
-		self.current_value = None
+	def __init__(self, system, word):
+		self.system = system
+		self.word = word
+		self.current_value = ''
 
+	def set_system(self, system: int): #ustawia system liczbowy
+		self.system = system
 
-######## lukasz
+	def set_word(self, word: str): #ustawia dlugosc slowa
+		self.word = word
 
-	def convert_system(self, value, input_system, output_system):
-		pass
-
-	def check_value_system(self, x): #czy liczba jest zgodna z systemem
-		pass
-
-
-########    monika
-	def check_value_word(self, x): #czy wartość mieści się w słowie
-		pass
-
-
-######## w poniedzialek
-	def insert_value(self, system, word, value):
-		if system == 'DEC':
-			converted_value = str(value)
-		elif system == 'BIN':
-			converted_value = int(str(value), 2)
-		elif system == 'OCT':
-			converted_value = int(str(value), 8)
-		elif system == 'HEX':
-			converted_value = int(str(value), 16)
-
-		if word == "BYTE" and -128 <= int(converted_value) <= 127:
-			self.value = converted_value
+	def convert_system(self, value: str, input_system: int, output_system: int): #konwertuje liczbe z jednego systemu na drugi
+		if input_system == output_system:
 			return value
+		dec = int(value, input_system)
+		if output_system == 10:
+			return dec
+		elif output_system == 2:
+			return bin(dec)[2:]
+		elif output_system == 8:
+			return oct(dec)[2:]
+		elif output_system == 16:
+			return hex(dec)[2:]
+
+	def check_value_system(self, value: str, system: int):  #sprawdza czy liczba jest zgodna z systemem
+		allowed_chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
+		value = value.upper()
+		for char in value:
+			if char not in allowed_chars[:system]:
+				return False
+		return True
+
+	def check_value_word(self, value: str, word: str):  # sprawdza czy wartosc miesci sie w slowie
+		return True
+
+	def display(self):  # imituje wyswietlacz
+		print(self.current_value)
+		return self.current_value
+
+	def insert_whole_value(self, value: str):  # wprowadza cala liczbe, np. skopiowana
+		if self.check_value_system(value, self.system) and self.check_value_word(value, self.word):
+			self.current_value = value
+
+	def insert_step_value(self, step: str):  # wprowadzanie liczby znak po znaku
+		tmp = self.current_value + step
+		if self.check_value_system(tmp, self.system) and self.check_value_word(tmp, self.word):
+			self.current_value = tmp
 
 
+calc = Calculator(10, 'Word')
+calc.set_system(16)
+calc.set_word('Word')
 
-	def dodawanie(self, a, b):
-		self.check_value_word(a)
-		self.check_value_system(a)
-		self.check_value_word(b)
-		self.check_value_system(b)
-		a1 = self.convert_system(a,self.system, 'Dec')
-		b1 = self.convert_system(a,self.system, 'Dec')
-		c = a + b
-		self.check_value_word(c)
-		self.check_value_system(c)
-		return c
+calc.insert_step_value('1')
+calc.display()
+calc.insert_step_value('2')
+calc.display()
+calc.insert_step_value('9')
+calc.display()
+calc.insert_step_value('7')
+calc.display()
