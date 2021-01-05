@@ -24,18 +24,18 @@ class Calculator:
 		dec = int(value, input_system)
 		if output_system == 10:
 			return dec
-		elif output_system == 2:
-			return bin(dec)[2:]
 		elif output_system == 8:
 			return oct(dec)[2:]
 		elif output_system == 16:
 			return hex(dec)[2:]
+		elif output_system == 2:
+			return bin(dec)[2:]
 
 	def check_value_system(self, value: str, system: int):  #sprawdza czy liczba jest zgodna z systemem
-		allowed_chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
+		allowed_chars = ['-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
 		value = value.upper()
 		for char in value:
-			if char not in allowed_chars[:system]:
+			if char not in allowed_chars[:system+1]:
 				return False
 		return True
 
@@ -43,7 +43,7 @@ class Calculator:
 		return True
 
 	def display(self):  # imituje wyswietlacz
-		print(self.current_value)
+		#print(self.current_value)
 		return self.current_value
 
 	def insert_whole_value(self, value: str):  # wprowadza cala liczbe, np. skopiowana
@@ -54,19 +54,3 @@ class Calculator:
 		tmp = self.current_value + step
 		if self.check_value_system(tmp, self.system) and self.check_value_word(tmp, self.word):
 			self.current_value = tmp
-
-
-calc = Calculator(10, 'Word')
-calc.set_word('Word')
-
-calc.insert_step_value('1')
-calc.display()
-calc.insert_step_value('2')
-calc.display()
-calc.insert_step_value('9')
-calc.display()
-calc.insert_step_value('7')
-calc.display()
-
-calc.set_system(8)
-calc.display()
