@@ -7,11 +7,16 @@ class Calculator:
 		self.word = word
 		self.current_value = ''
 
-	def set_system(self, system: int): #ustawia system liczbowy
+	def set_system(self, system: int): #ustawia system liczbowy i konwertuje aktualna wartosc wyswietlacza
+		if not self.current_value == '':
+			self.current_value = self.convert_system(self.current_value, self.system, system)
 		self.system = system
 
 	def set_word(self, word: str): #ustawia dlugosc slowa
 		self.word = word
+
+	def clear(self): #czysci wyswietlacz
+		self.current_value = ''
 
 	def convert_system(self, value: str, input_system: int, output_system: int): #konwertuje liczbe z jednego systemu na drugi
 		if input_system == output_system:
@@ -52,7 +57,6 @@ class Calculator:
 
 
 calc = Calculator(10, 'Word')
-calc.set_system(16)
 calc.set_word('Word')
 
 calc.insert_step_value('1')
@@ -62,4 +66,7 @@ calc.display()
 calc.insert_step_value('9')
 calc.display()
 calc.insert_step_value('7')
+calc.display()
+
+calc.set_system(8)
 calc.display()

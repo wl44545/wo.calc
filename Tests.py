@@ -4,7 +4,7 @@ from Calculator import Calculator
 
 class Tests(TestCase):
 	def setUp(self):
-		self.calculator = Calculator()
+		self.calculator = Calculator(10, 'Word')
 
 
 class TestImportValue(Tests):
