@@ -27,7 +27,7 @@ class Calculator:
 		elif output_system == 8:
 			return oct(dec)[2:]
 		elif output_system == 16:
-			return hex(dec)[2:]
+			return hex(dec)[2:].upper()
 		elif output_system == 2:
 			return bin(dec)[2:]
 
