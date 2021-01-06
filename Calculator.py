@@ -40,7 +40,16 @@ class Calculator:
 		return True
 
 	def check_value_word(self, value: str, word: str):  # sprawdza czy wartosc miesci sie w slowie
-		return True
+		tmp = int(self.convert_system(value, self.system, 10))
+		if self.word == 'Byte' and -128 <= tmp <= 127:
+			return True
+		elif self.word == 'Word' and -32768 <= tmp <= 32676:
+			return True
+		elif self.word == 'DWord' and -2147450880 <= tmp <= 2147450879:
+			return True
+		elif self.word == 'QWord' and -9223372036854775808 <= tmp <= 9223372036854775807:
+			return True
+		return False
 
 	def display(self):  # imituje wyswietlacz
 		#print(self.current_value)
