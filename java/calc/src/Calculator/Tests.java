@@ -291,8 +291,8 @@ class Tests {
 		Assert.assertEquals(calculator.display(), "01111111111111111111111111111111");
 
 		calculator.clear();
-		calculator.insert_whole_value("10000000000000000000000000000000");
-		Assert.assertEquals(calculator.display(), "10000000000000000000000000000000");
+		calculator.insert_whole_value("1000000000000000000000000000000");
+		Assert.assertEquals(calculator.display(), "1000000000000000000000000000000");
 
 		calculator.clear();
 		calculator.insert_whole_value("11111111111111111111111111111111");
@@ -300,7 +300,7 @@ class Tests {
 		Assert.assertEquals(calculator.display(), "11111111111111111111111111111111");
 
 		calculator.clear();
-		calculator.insert_whole_value("10000000000000000000000000000000");
+		calculator.insert_whole_value("1000000000000000000000000000000");
 		calculator.insert_step_value("0");
 		Assert.assertEquals(calculator.display(), "10000000000000000000000000000000");
 	}
@@ -416,9 +416,9 @@ class Tests {
 
 		calculator.set_system(10);
 		calculator.clear();
-		calculator.insert_whole_value("-100000");
+		calculator.insert_whole_value("70368744077664");
 		calculator.set_system(8);
-		Assert.assertEquals(calculator.display(), "37777474540");
+		Assert.assertEquals(calculator.display(), "1777777777474540");
 	}
 	@Test
 	void test_dec_hex(){
@@ -433,7 +433,7 @@ class Tests {
 		calculator.clear();
 		calculator.insert_whole_value("-100000");
 		calculator.set_system(16);
-		Assert.assertEquals(calculator.display(), "FFFE7960");
+		Assert.assertEquals(calculator.display(), "FFFFFFFFFFFE7960");
 	}
 	@Test
 	void test_dec_bin(){
@@ -448,7 +448,7 @@ class Tests {
 		calculator.clear();
 		calculator.insert_whole_value("-100000");
 		calculator.set_system(2);
-		Assert.assertEquals(calculator.display(), "11111111111111100111100101100000");
+		Assert.assertEquals(calculator.display(), "1111111111111111111111111111111111111111111111100111100101100000");
 	}
 	@Test
 	void test_oct_dec(){
@@ -461,9 +461,9 @@ class Tests {
 
 		calculator.set_system(8);
 		calculator.clear();
-		calculator.insert_whole_value("1777777777777777474540");
+		calculator.insert_whole_value("1777777777474540");
 		calculator.set_system(10);
-		Assert.assertEquals(calculator.display(), "-100000");
+		Assert.assertEquals(calculator.display(), "70368744077664");
 	}
 	@Test
 	void test_oct_hex(){
@@ -476,9 +476,9 @@ class Tests {
 
 		calculator.set_system(8);
 		calculator.clear();
-		calculator.insert_whole_value("1777777777777777474540");
+		calculator.insert_whole_value("1777777777474540");
 		calculator.set_system(16);
-		Assert.assertEquals(calculator.display(), "FFFFFFFFFFE7960");
+		Assert.assertEquals(calculator.display(), "3FFFFFFE7960");
 	}
 	@Test
 	void test_oct_bin(){
@@ -487,13 +487,13 @@ class Tests {
 		calculator.clear();
 		calculator.insert_whole_value("303240");
 		calculator.set_system(2);
-		Assert.assertEquals(calculator.display(), "00011000011010100000");
+		Assert.assertEquals(calculator.display(), "11000011010100000");
 
 		calculator.set_system(8);
 		calculator.clear();
-		calculator.insert_whole_value("1777777777777777474540");
+		calculator.insert_whole_value("1777777777474540");
 		calculator.set_system(2);
-		Assert.assertEquals(calculator.display(), "1111111111111111111111111111111111111111111111100111100101100000");
+		Assert.assertEquals(calculator.display(), "1111111111111111111111111111100111100101100000");
 	}
 	@Test
 	void test_hex_dec(){
@@ -521,9 +521,9 @@ class Tests {
 
 		calculator.set_system(16);
 		calculator.clear();
-		calculator.insert_whole_value("FFFFFFFFFFFE7960");
+		calculator.insert_whole_value("3FFFFFFE7960");
 		calculator.set_system(8);
-		Assert.assertEquals(calculator.display(), "1777777777777777474540");
+		Assert.assertEquals(calculator.display(), "1777777777474540");
 	}
 	@Test
 	void test_hex_bin(){
@@ -714,7 +714,7 @@ class Tests {
 		calculator.clear();
 		calculator.insert_whole_value("32768");
 		calculator.set_word("Word");
-		Assert.assertEquals(calculator.display(), "-32768");
+		Assert.assertEquals(calculator.display(), "32768");
 	}
 	@Test
 	void test_qword_dword(){
@@ -729,7 +729,7 @@ class Tests {
 		calculator.clear();
 		calculator.insert_whole_value("141312929864");
 		calculator.set_word("DWord");
-		Assert.assertEquals(calculator.display(), "-420990904");
+		Assert.assertEquals(calculator.display(), "3873976392");
 
 
 	}

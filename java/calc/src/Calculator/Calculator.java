@@ -20,11 +20,79 @@ public class Calculator {
 	}
 	
 	public void set_word(String word) {
+		if (this.current_value != "") {
+			this.current_value = convert_word(this.current_value, this.word, word);
+		}
 		this.word = word;
 	}
 	
 	public void clear() {
 		this.current_value = "";
+	}
+		
+	public String bits_pruning(String value, int system, String word) {
+		String tmp = convert_system(value, system, 2);
+		if(word == "Byte") {
+			tmp = String.format("%8s", tmp).replace(' ', '0');
+			tmp = tmp.substring(tmp.length() - 8);
+		}
+		else if(word == "Word") {
+			tmp = String.format("%16s", tmp).replace(' ', '0');
+			tmp = tmp.substring(tmp.length() - 16);
+		}
+		else if(word == "DWord") {
+			tmp = String.format("%32s", tmp).replace(' ', '0');
+			tmp = tmp.substring(tmp.length() - 32);
+		}
+		else if(word == "QWord") {
+			tmp = String.format("%64s", tmp).replace(' ', '0');
+			tmp = tmp.substring(tmp.length() - 64);
+		}
+		return convert_system(tmp, 2, system);
+	}
+	
+	public String convert_word(String value, String input_word, String output_word) {
+		if (input_word == output_word) {
+			return value;
+		}		
+		else if(input_word == "Byte" && output_word=="Word") {
+			return value;
+		}
+		else if(input_word == "Byte" && output_word=="DWord") {
+			return value;
+		}
+		else if(input_word == "Byte" && output_word=="QWord") {
+			return value;
+		}
+		else if(input_word == "Word" && output_word=="Byte") {
+			return bits_pruning(value, system, output_word);
+		}
+		else if(input_word == "Word" && output_word=="DWord") {
+			return value;
+		}
+		else if(input_word == "Word" && output_word=="QWord") {
+			return value;
+		}
+		else if(input_word == "DWord" && output_word=="Byte") {
+			return bits_pruning(value, system, output_word);
+		}
+		else if(input_word == "DWord" && output_word=="Word") {
+			return bits_pruning(value, system, output_word);
+		}
+		else if(input_word == "DWord" && output_word=="QWord") {
+			return value;
+		}
+		else if(input_word == "QWord" && output_word=="Byte") {
+			return bits_pruning(value, system, output_word);
+		}
+		else if(input_word == "QWord" && output_word=="Word") {
+			return bits_pruning(value, system, output_word);
+		}
+		else if(input_word == "QWord" && output_word=="DWord") {
+			return bits_pruning(value, system, output_word);
+		}
+		
+		return "false";
 	}
 	
 	public String convert_system(String value, int input_system, int output_system) {
@@ -81,10 +149,10 @@ public class Calculator {
 	
 	public boolean check_value_word(String value) {
 		long tmp = Long.parseLong(convert_system(value, this.system, 10));
-		if (this.word == "Byte" && -128 <= tmp && tmp <= 127) {
+		if (this.word == "Byte" && -128 <= tmp && tmp <= 128) {
 			return true;
 		}
-		else if (this.word == "Word" && -32768 <= tmp && tmp <= 32767) {
+		else if (this.word == "Word" && -32768 <= tmp && tmp <= 32768) {
 			return true;
 		}
 		else if (this.word == "DWord" && -2147483648 <= tmp && tmp <=2147483647) {
@@ -230,6 +298,8 @@ public class Calculator {
 		calc.insert_step_value("7");
 		calc.display();
 		
+		
+		System.out.println(calc.bits_pruning("1", 10, "Byte"));
 		
 	}
 }
