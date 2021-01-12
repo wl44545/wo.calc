@@ -373,14 +373,14 @@ class Tests {
 		Assert.assertEquals(calculator.display(), "0");
 
 		calculator.clear();
-		calculator.insert_whole_value("7FFFFFFFFFFFFFF7");
+		calculator.insert_whole_value("7FFFFFFFFFFFFFFF");
 		calculator.insert_step_value("F");
-		Assert.assertEquals(calculator.display(), "7FFFFFFFFFFFFFF7");
+		Assert.assertEquals(calculator.display(), "7FFFFFFFFFFFFFF");
 
 		calculator.clear();
-		calculator.insert_whole_value("7000000000000000");
+		calculator.insert_whole_value("700000000000000");
 		calculator.insert_step_value("8");
-		Assert.assertEquals(calculator.display(), "7000000000000000");
+		Assert.assertEquals(calculator.display(), "700000000000000");
 	}
 	@Test
 	void test_bin_qword(){

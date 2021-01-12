@@ -50,6 +50,20 @@ public class Calculator {
 	public boolean check_value_system(String value, long system) {
 		char [] allowed_chars = {'-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 		value = value.toUpperCase();
+		
+		if(system==10 && value.length()>=19) {
+			return false;
+		}
+		else if(system==8 && value.length()>=21) {
+			return false;
+		}
+		else if(system==16 && value.length()>=16) {
+			return false;
+		}
+		else if(system==2 && value.length()>=64) {
+			return false;
+		}
+		
 		long result = 0;
 		for(int i=0; i<value.length();i++) {
 			for(int j=0; j<system+1;j++) {
